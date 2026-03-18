@@ -1,0 +1,193 @@
+<!doctype html>
+<!-- บอก browser ว่านี่คือเอกสาร HTML5 -->
+
+<html lang="th">
+  <!-- root element ของหน้าเว็บ และกำหนดภาษาหลักเป็นภาษาไทย -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <!-- กำหนด encoding เป็น UTF-8 เพื่อให้รองรับภาษาไทยได้ถูกต้อง -->
+
+    <title>สั่งซื้อปลาส้ม - Pla Som By Maew Som</title>
+    <!-- ชื่อแท็บบน browser -->
+  </head>
+
+  <body>
+    <!-- เนื้อหาทั้งหมดที่แสดงบนหน้าเว็บ -->
+
+    <h1>แบบฟอร์มสั่งซื้อสินค้า - Pla Som By Maew Som</h1>
+    <!-- หัวข้อหลักของหน้า -->
+
+    <form action="#" method="POST" enctype="multipart/form-data">
+      <!-- 
+        form = ฟอร์มสำหรับรับ input จาก user
+        
+        action="#" 
+        = URL ที่จะส่งข้อมูลไป (ตอนนี้ยังไม่กำหนด backend เลยใช้ #)
+        
+        method="POST"
+        = วิธีส่งข้อมูล (POST ใช้สำหรับส่งข้อมูลที่มีความสำคัญ เช่น form)
+        
+        enctype="multipart/form-data"
+        = จำเป็นเมื่อมี file upload (input type="file")
+        -->
+
+      <fieldset>
+        <!-- ใช้จัดกลุ่มข้อมูลใน form ให้เป็นหมวด -->
+
+        <legend>ข้อมูลผู้รับสินค้า</legend>
+        <!-- ชื่อกลุ่ม -->
+
+        <p>
+          <!-- ใช้จัด layout ให้ขึ้นบรรทัดใหม่ -->
+
+          <label for="cust_name">ชื่อ-นามสกุล:</label><br />
+          <!-- 
+                label ใช้บอกว่า input นี้คืออะไร
+                for="cust_name" จะไปจับกับ id ของ input
+                -->
+
+          <input type="text" id="cust_name" name="cust_name" required />
+          <!-- 
+                type="text" = รับข้อความทั่วไป
+                id = ใช้เชื่อมกับ label
+                name = key ที่จะถูกส่งไป backend
+                required = บังคับกรอก
+                -->
+        </p>
+
+        <p>
+          <label for="cust_phone">เบอร์โทรศัพท์ (สำหรับไรเดอร์ติดต่อ):</label
+          ><br />
+          <input type="tel" id="cust_phone" name="cust_phone" required />
+          <!-- 
+                type="tel" = input สำหรับเบอร์โทร (มือถือจะขึ้น keypad แบบตัวเลข)
+                -->
+        </p>
+
+        <p>
+          <label for="cust_address">ที่อยู่จัดส่ง (เฉพาะเขตบางแสน):</label
+          ><br />
+          <textarea
+            id="cust_address"
+            name="cust_address"
+            rows="4"
+            cols="50"
+            required
+          ></textarea>
+          <!-- 
+                textarea = กล่องข้อความหลายบรรทัด
+                rows = จำนวนแถว
+                cols = ความกว้าง
+                -->
+        </p>
+      </fieldset>
+
+      <br />
+      <!-- เว้นบรรทัด -->
+
+      <fieldset>
+        <legend>เลือกเมนูที่ต้องการสั่ง</legend>
+
+        <p>ระบุจำนวนที่ต้องการ (ใส่ 0 หรือเว้นว่างหากไม่ต้องการรับเมนูนั้น)</p>
+
+        <p>
+          <label for="menu_s">1. ชุด "มังคุดสั่งลุย" (S):</label>
+
+          <input
+            type="number"
+            id="menu_s"
+            name="qty_mungkud_s"
+            min="0"
+            max="10"
+            value="0"
+          />
+          ชุด
+          <!-- 
+                type="number" = รับเฉพาะตัวเลข
+                min="0" = ห้ามติดลบ
+                value="0" = ค่าเริ่มต้น
+                -->
+        </p>
+
+        <p>
+          <label for="menu_l">2. ชุด "เจ้าที่ครองถิ่น" (L):</label>
+
+          <input
+            type="number"
+            id="menu_l"
+            name="qty_jaotee_l"
+            min="0"
+            max="10"
+            value="0"
+          />
+          ชุด
+        </p>
+
+        <p>
+          <label for="menu_rice">3. ข้าวหน้าปลาส้มเบิร์นไฟ:</label>
+
+          <input
+            type="number"
+            id="menu_rice"
+            name="qty_salmon_burn"
+            min="0"
+            max="10"
+            value="0"
+          />
+          ที่
+        </p>
+      </fieldset>
+
+      <br />
+
+      <fieldset>
+        <legend>การชำระเงิน (สแกนจ่ายเท่านั้น)</legend>
+
+        <p>
+          <label for="slip">แนบภาพสลิปโอนเงิน:</label><br />
+
+          <input
+            type="file"
+            id="slip"
+            name="slip_image"
+            accept="image/*"
+            required
+          />
+          <!-- 
+                type="file" = อัปโหลดไฟล์
+                accept="image/*" = จำกัดให้เลือกเฉพาะไฟล์รูปภาพ
+                required = ต้องแนบไฟล์
+                -->
+        </p>
+
+        <p>
+          <label for="customer_note">หมายเหตุเพิ่มเติมถึงร้าน (ถ้ามี):</label
+          ><br />
+
+          <input
+            type="text"
+            id="customer_note"
+            name="customer_note"
+            placeholder="เช่น ไม่เอาวาซาบิ"
+          />
+          <!-- 
+                placeholder = ข้อความตัวอย่างในช่อง input
+                -->
+        </p>
+      </fieldset>
+
+      <br />
+
+      <button type="submit">ยืนยันการสั่งซื้อ ปลาส้มพร้อมส่ง! 🍣</button>
+      <!-- 
+        type="submit" = ส่งข้อมูล form ไปยัง server
+        -->
+
+      <button type="reset">ล้างข้อมูล/เขียนใหม่</button>
+      <!-- 
+        type="reset" = รีเซ็ตค่าทั้งหมดใน form
+        -->
+    </form>
+  </body>
+</html>
